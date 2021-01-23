@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resultat data{% endblock %}
+
+{% block body %}
+    <div class="album py-5" id="france">
+        <div class="container">
+            <h1 class="mb-5">
+                Les chiffres
+            </h1>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Nb Hospitalisations
+                            </h5>
+                            <p class="card-text">
+                                Nombre de personnes actuellement hospitalisées
+                            </p>
+                            <h3 class="card-footer bg-warning text-dark mx-2 rounded-pill">
+                                {{ data.FranceGlobalLiveData.0.hospitalises }}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Nombre de personnes en Réa
+                            </h5>
+                            <p class="card-text">
+                                Nombre e personnes actuellement en réanimation
+                            </p>
+                            <h3 class="card-footer bg-warning text-dark mx-2 rounded-pill">
+                                {{ data.FranceGlobalLiveData.0.reanimation }}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Nb Hospitalisations
+                            </h5>
+                            <p class="card-text">
+                                Nombre de décés
+                            </p>
+                            <h3 class="card-footer bg-dark text-light mx-2 rounded-pill">
+                                {{ data.FranceGlobalLiveData.0.deces }}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Nb cas guéris
+                            </h5>
+                            <p class="card-text">
+                                Nombre de cas guéris depuis le début de la pandémie
+                            </p>
+                            <h3 class="card-footer bg-success text-dark mx-2 rounded-pill">
+                                {{ data.FranceGlobalLiveData.0.gueris }}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Nb confirmés
+                            </h5>
+                            <p class="card-text">
+                                Nombre de cas confirmés depuis le début de la pandémie
+                            </p>
+                            <h3 class="card-footer bg-info text-dark mx-2 rounded-pill">
+                                {{ data.FranceGlobalLiveData.0.casConfirmes }}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Source de données
+                            </h5>
+                            <p class="card-text">
+                                Source de données: <br/> {{ data.FranceGlobalLiveData.0.sourceType }}
+                            </p>
+                            <h3 class="card-footer bg-secondary text-dark mx-2 rounded-pill">
+                                {{ data.FranceGlobalLiveData.0.date }}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="album py-5" id="france">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for department in departments.allLiveFranceData %}
+                    <div class="col">
+                        <div class="card shadow-lg h-100 m-2">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    {{ department.nom }}
+                                </h5>
+                                <p class="card-text">
+                                    Actuellement hospitalisés <span class="badge bg-secondary"> {{ department.hospitalises }}</span>
+                                </p>
+                                <p class="card-text">
+                                    Actuellement en rés <span class="badge bg-secondary"> {{ department.reanimation }}</span>
+                                </p>
+                                <a href="{{ path('department', {department: department.nom}) }}" class="btn btn-secondary" role="button" aria-pressed="true">Plus de chiffres</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

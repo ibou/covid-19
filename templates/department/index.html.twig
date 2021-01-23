@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ data.LiveDataByDepartement.0.nom }}{% endblock %}
+
+{% block body %}
+    <div class="album py-5" id="france">
+        <div class="container">
+            <div class="px-3 py-3 text-center">
+                <h1 class="mb-5">
+                    Les chiffres du covid-19 - {{ data.LiveDataByDepartement.0.nom }}
+                </h1>
+                <p class="lead">
+                    Source de données: <br/> {{ data.LiveDataByDepartement.0.sourceType }}
+                </p>
+                <p class="lead">
+                    Source de données: <br/> {{ data.LiveDataByDepartement.0.date }}
+                </p>
+            </div>
+
+            <div class="card mb-5 shadaw-lg">
+                <div class="card-body">
+                    {{ render_chart(chart) }}
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Nb Hospitalisations
+                            </h5>
+                            <p class="card-text">
+                                Nombre de personnes actuellement hospitalisées
+                            </p>
+                            <h3 class="card-footer bg-warning text-dark mx-2 rounded-pill">
+                                {{ data.LiveDataByDepartement.0.hospitalises }}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Nombre de personnes en Réa
+                            </h5>
+                            <p class="card-text">
+                                Nombre e personnes actuellement en réanimation
+                            </p>
+                            <h3 class="card-footer bg-danger text-dark mx-2 rounded-pill">
+                                {{ data.LiveDataByDepartement.0.reanimation }}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
