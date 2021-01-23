@@ -37,7 +37,7 @@ class DepartmentController extends AbstractController
             }
         }
         
-        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
+        $chart = $chartBuilder->createChart(Chart::TYPE_RADAR);
         $chart->setData(
             [
                 'labels' => array_reverse($label),
